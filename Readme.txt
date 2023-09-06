@@ -6,10 +6,11 @@ NewsItemViewHolder.kt
 NewsItemAdapter.kt
 RecyclerView + LayoutManager
 
-ViewHolder
+ViewHolder()
 - кэширование относительно дорогого findViewById
 - Мост между LayoutManager, Animator ами и Decorator ами
 - Основной элемент Recycling а
+
 
 getBindingAdapterPosition()
 getAbsoluteAdapterPosition

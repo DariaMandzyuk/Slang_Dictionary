@@ -1,8 +1,9 @@
-package com.mandarin.slangdictionary
+package com.mandarin.slangdictionary.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mandarin.slangdictionary.R
 import com.mandarin.slangdictionary.model.WordModel
 
 class WordAdapter(
