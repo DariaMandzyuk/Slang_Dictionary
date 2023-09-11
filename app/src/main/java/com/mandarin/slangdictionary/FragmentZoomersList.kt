@@ -8,8 +8,11 @@ import com.mandarin.slangdictionary.adapter.WordAdapter
 import com.mandarin.slangdictionary.adapter.WordListener
 import com.mandarin.slangdictionary.repository.WordRepository
 import com.mandarin.slangdictionary.presentation.MainPresenter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class FragmentZoomersList(override val wordRepository: WordRepository) : Fragment(R.layout.fragment_zoomers_list),
+@AndroidEntryPoint
+class FragmentZoomersList (override val wordRepository: WordRepository) : Fragment(R.layout.fragment_zoomers_list),
     WordListener {
 
     private val adapter by lazy { WordAdapter(this) }

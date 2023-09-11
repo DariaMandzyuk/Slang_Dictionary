@@ -7,7 +7,9 @@ import androidx.fragment.app.activityViewModels
 import com.mandarin.slangdictionary.WordViewModel
 import com.mandarin.slangdictionary.R
 import com.mandarin.slangdictionary.dto.Word
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WordFragment : Fragment(R.layout.word_presenter) {
 
     private val viewModel: WordViewModel by activityViewModels()

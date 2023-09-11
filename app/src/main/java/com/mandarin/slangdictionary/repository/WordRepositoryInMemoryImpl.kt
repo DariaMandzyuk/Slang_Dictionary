@@ -2,8 +2,9 @@ package com.mandarin.slangdictionary.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.mandarin.slangdictionary.model.WordModel
+import javax.inject.Inject
 
-class WordRepositoryInMemoryImpl: WordRepository {
+class WordRepositoryInMemoryImpl @Inject constructor() : WordRepository {
     private var model = listOf(
         WordModel(
             id = 1,
