@@ -1,133 +1,41 @@
 package com.mandarin.slangdictionary.repository
 
-import androidx.lifecycle.MutableLiveData
-import com.mandarin.slangdictionary.model.WordModel
+import com.mandarin.slangdictionary.api.ApiSlangDictionary
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 import javax.inject.Inject
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.mandarin.slangdictionary.model.WordModel
 
-class WordRepositoryInMemoryImpl @Inject constructor() : WordRepository {
-    private var model = listOf(
-        WordModel(
-            id = 1,
-            title = "Кринж",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 2,
-            title = "Имба",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 3,
-            title = "Рофлить",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 4,
-            title = "Краш",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 5,
-            title = "Флексить",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 6,
-            title = "Ауф",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 7,
-            title = "Форсить",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 8,
-            title = "Дед инсайд",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 9,
-            title = "Агриться",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 10,
-            title = "Буллинг",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 11,
-            title = "Скам",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 12,
-            title = "Шипперить",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 13,
-            title = "POV, или ПОВ",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 14,
-            title = "Рофл",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 15,
-            title = "Сабж",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 16,
-            title = "Свэг",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 17,
-            title = "Симп",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 18,
-            title = "Стэнить",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 19,
-            title = "Тильт",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 20,
-            title = "Треш",
-            likedByMe = false
-        ),
-        WordModel(
-            id = 21,
-            title = "Хайп",
-            likedByMe = false
-        )
-    )
+class WordRepositoryInMemoryImpl @Inject constructor(
+    private val apiSlangDictionary: ApiSlangDictionary
+) : WordRepository {
 
-
-    private val data =
-        MutableLiveData(model)
-
-    override fun getAll(): List<WordModel> = model
-
-    override fun likeById(id: Long) {
-        model = model.map {
-            if (it.id != id) {
-                it
-            } else {
-                it.copy(likedByMe = !it.likedByMe)
+    private var data: List<WordModel> = mutableListOf() // это список объектов типа WordModel, который будет содержать данные после их получения из сети.
+    private val gson = Gson() // это экземпляр Gson, который используется для преобразования JSON-строк в объекты и наоборот
+    override suspend fun getAll(type: String): List<WordModel> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val responseJson = apiSlangDictionary.getListData(type)
+                val tempList: List<WordModel> = gson.fromJson(
+                    responseJson.toString(),
+                    object : TypeToken<List<WordModel>>() {}.type
+                )
+                tempList // Return the parsed list
+            } catch (e: SocketTimeoutException) {
+                throw Exception("Socket timeout")
             }
         }
-        data.value = model
-        }
     }
+
+    override fun getWord(wordId: String): WordModel? {
+        return data.find { it.id.toString() == wordId }
+    }
+
+    override fun likeById(id: Long) {
+
+    }
+}
 

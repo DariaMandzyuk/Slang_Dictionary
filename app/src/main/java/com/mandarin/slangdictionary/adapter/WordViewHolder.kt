@@ -15,7 +15,7 @@ class WordViewHolder( // ДЕРЖАТЕЛЬ ВИЗУАЛЬНОГО ПРЕДСТ�
         itemView.findViewById<TextView>(R.id.title).apply {
             text = model.title
             setOnClickListener {
-                wordListener.onItemClicked(model.id.toString())
+//                wordListener.onItemClicked(model.id)
             }
         }
 

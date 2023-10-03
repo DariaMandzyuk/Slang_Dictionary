@@ -1,4 +1,4 @@
-package com.mandarin.slangdictionary
+package com.mandarin.slangdictionary.ui
 
 import com.mandarin.slangdictionary.dto.Word
 

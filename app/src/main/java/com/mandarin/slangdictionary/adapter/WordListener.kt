@@ -6,5 +6,5 @@ interface WordListener {
 
     abstract val wordRepository: WordRepository
 
-    fun onItemClicked(text: String)
+   suspend fun onItemClicked(id: Long)
 }

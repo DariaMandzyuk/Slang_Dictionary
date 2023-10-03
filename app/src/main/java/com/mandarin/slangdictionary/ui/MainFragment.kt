@@ -1,11 +1,11 @@
-package com.mandarin.slangdictionary
+package com.mandarin.slangdictionary.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.mandarin.slangdictionary.R
 import com.mandarin.slangdictionary.repository.WordRepository
-import com.mandarin.slangdictionary.repository.WordRepositoryInMemoryImpl
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

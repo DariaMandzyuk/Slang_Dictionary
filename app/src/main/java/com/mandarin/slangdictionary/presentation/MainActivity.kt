@@ -2,7 +2,7 @@ package com.mandarin.slangdictionary.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mandarin.slangdictionary.MainFragment
+import com.mandarin.slangdictionary.ui.MainFragment
 import com.mandarin.slangdictionary.R
 import dagger.hilt.android.AndroidEntryPoint
 
