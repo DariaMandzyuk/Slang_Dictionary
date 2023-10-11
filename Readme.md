@@ -14,6 +14,8 @@
 - **Network: Retrofit**
   
 - **Coroutines для ассинхронных операций /  Coroutines for asynchronous operations**
+  
+- **Комментарии зеленым от метнора. Приложение в процессе доработки и улучшения**
 
 **Сервер написан другим разработчиком по моему запросу /  The server was written by another developer at my request**
 
